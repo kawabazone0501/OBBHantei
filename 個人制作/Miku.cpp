@@ -147,8 +147,8 @@ void MikuObject::UpdateMatrix()
 	/*MV1DetachAnim(modelHandle, 0);
 	MV1AttachAnim(modelHandle, 0);
 	MV1SetAttachAnimTime(modelHandle, 0, animTimer);*/
-	//MATRIX frame_matrix = MV1GetFrameLocalWorldMatrix(GetModelHandle(model.modelKind), 1);
-	MATRIX frame_matrix = MV1GetFrameLocalWorldMatrix(modelHandle, 1);
+	MATRIX frame_matrix = MV1GetFrameLocalWorldMatrix(GetModelHandle(model.modelKind), 1);
+	//MATRIX frame_matrix = MV1GetFrameLocalWorldMatrix(modelHandle, 1);
 
 	// 武器用の親行列を変更
 	collider.ChangeParentMatrix(frame_matrix);
