@@ -21,6 +21,7 @@ public:
 		modelHandle{ handle_ },
 		pos{ pos_ }
 	{
+		InitializedMiku();
 		animTime = MV1GetAnimTotalTime(modelHandle, 0);
 	}
 
@@ -28,11 +29,12 @@ public:
 		modelHandle{ handle_ },
 		pos{ x_,y_,z_ }
 	{
+		InitializedMiku();
 		animTime = MV1GetAnimTotalTime(modelHandle, 0);
 	}
 
-	void Update();
-	void Draw();
+	/*void Update();
+	void Draw();*/
 
 private:
 	static const Vec3 InitColliderPos;

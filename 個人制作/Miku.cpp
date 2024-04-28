@@ -10,7 +10,9 @@ const Vec3 MikuObject::InitColliderPos{ 0.0f, 0.0f, 0.0f };
 const Vec3 MikuObject::InitColliderScale{ 80.0f, 10.0f, 10.0f };
 const Vec3 MikuObject::InitColliderAngle{ 0.0f, 0.0f, 0.0f };
 
-MikuObject g_Miku;
+extern int g_ModelHandles[MaxModelKindNum];
+
+MikuObject g_Miku(g_ModelHandles[1], VGet(0.0f, 0.0f, 0.0f));
 
 VECTOR MikuObject::GetMikuPos()
 {
@@ -104,6 +106,7 @@ void MikuObject::UpdateMiku()
 void MikuObject::DrawMiku()
 {
 	DrawAnimationModel(&model);
+
 	MV1DetachAnim(modelHandle, 0);
 	MV1AttachAnim(modelHandle, 0);
 	MV1SetAttachAnimTime(modelHandle, 0, animTimer);
@@ -124,27 +127,28 @@ void MikuObject::UpdateMatrix()
 	// 親行列を作るためにモデル情報を最新に更新する
 	worldMat = MGetIdent();
 	MATRIX scale_mat = MGetIdent();
-	CreateScalingMatrix(&scale_mat, Scale.x, Scale.y, Scale.z);
+	CreateScalingMatrix(&scale_mat, model.scale.x, model.scale.y, model.scale.z);
 	MATRIX rotate_mat = MGetIdent();
-	VECTOR angle_rad = angle.ToVECTOR();
+	VECTOR angle_rad = model.rotateAngle;
 	angle_rad = VScale(angle_rad, DX_PI / 180.0f);
 	CreateRotationXYZMatrix(&rotate_mat, angle_rad.x, angle_rad.y, angle_rad.z);
 	MATRIX translate_mat = MGetIdent();
-	CreateTranslationMatrix(&translate_mat, pos.x, pos.y, pos.z);
+	CreateTranslationMatrix(&translate_mat, model.pos.x, model.pos.y, model.pos.z);
 	worldMat = MMult(worldMat, scale_mat);
 	worldMat = MMult(worldMat, rotate_mat);
 	worldMat = MMult(worldMat, translate_mat);
 	MV1SetMatrix(modelHandle, worldMat);
 
-	/*
-		MV1GetFrameLocalWorldMatrixはアニメーションを反映させた状態で取得しないと
-		意図した情報を取得することができないので注意
-	*/
+	///*
+	//	MV1GetFrameLocalWorldMatrixはアニメーションを反映させた状態で取得しないと
+	//	意図した情報を取得することができないので注意
+	//*/
 	// アニメーションの反映
-	MV1DetachAnim(modelHandle, 0);
+	/*MV1DetachAnim(modelHandle, 0);
 	MV1AttachAnim(modelHandle, 0);
-	MV1SetAttachAnimTime(modelHandle, 0, animTimer);
-	MATRIX frame_matrix = MV1GetFrameLocalWorldMatrix(modelHandle, 18);
+	MV1SetAttachAnimTime(modelHandle, 0, animTimer);*/
+	//MATRIX frame_matrix = MV1GetFrameLocalWorldMatrix(GetModelHandle(model.modelKind), 1);
+	MATRIX frame_matrix = MV1GetFrameLocalWorldMatrix(modelHandle, 1);
 
 	// 武器用の親行列を変更
 	collider.ChangeParentMatrix(frame_matrix);

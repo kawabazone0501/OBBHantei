@@ -14,7 +14,7 @@ extern MikuObject g_Miku;
 extern EnemyObject g_Enemy;
 
 //extern int g_ShadowMapHandles[ShadowMapTypeMax];
-static int g_ModelHandles[MaxModelKindNum];
+int g_ModelHandles[MaxModelKindNum];
 
 // ƒvƒƒOƒ‰ƒ€‚Í WinMain ‚©‚çn‚Ü‚è‚Ü‚·
 int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine, int nCmdShow)
