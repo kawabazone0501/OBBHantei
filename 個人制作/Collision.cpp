@@ -113,5 +113,11 @@ bool IsCollingOBBAndOBB(OBBCollider& collider_01_, OBBCollider& collider_02_)
 		return false;
 	}
 
+	if (CheckOBBCrossVecSAT(axes, vertices_list) == true)
+	{
+		// •ª—£Ž²‚ªŒ©‚Â‚©‚Á‚½‚Ì‚Å“–‚½‚Á‚Ä‚¢‚È‚¢
+		return false;
+	}
+
 	return true;
 }

@@ -61,13 +61,8 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine
 
 	SceneManager scene_manager(SceneBase::Type::Title);
 
-	
-
 	//LoadShadow();
-	
-
-	
-
+		
 	/*g_Miku.InitializedMiku();
 	g_Enemy.InitAnimation();*/
 

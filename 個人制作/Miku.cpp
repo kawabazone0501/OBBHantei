@@ -10,7 +10,11 @@ const Vec3 MikuObject::InitColliderPos{ 0.0f, 0.0f, 0.0f };
 const Vec3 MikuObject::InitColliderScale{ 80.0f, 10.0f, 10.0f };
 const Vec3 MikuObject::InitColliderAngle{ 0.0f, 0.0f, 0.0f };
 
-MikuObject g_Miku;
+//MikuObject g_Miku;
+
+static int g_ModelHandles[MaxModelKindNum];
+
+MikuObject g_Miku(g_ModelHandles[0], VGet(0.0f, 0.0f, 0.0f));
 
 VECTOR MikuObject::GetMikuPos()
 {

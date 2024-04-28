@@ -6,41 +6,6 @@ extern SceneStep g_currentSceneStep;
 extern SceneType g_currentSceneType;
 int g_Handles[TexturKind::TexturKindMax];
 
-//タイトルシーンを動かす関数
-//void MainTitleScene()
-//{
-//	switch (g_currentSceneStep)
-//	{
-//	case SceneStep::SceneStepInit:
-//		InitTitleScene();
-//		break;
-//	case SceneStep::SceneStepRun:
-//		RunTitleScene();
-//		break;
-//	case SceneStep::SceneStepFinish:
-//		FinishTitleScene();
-//		break;
-//	}
-//}
-//
-//void InitTitleScene()
-//{
-//	g_Handles[TexturKind::TexturKindTitle] = LoadGraph("Res/Title.png");
-//
-//	g_currentSceneStep = SceneStepRun;
-//}
-//
-//void RunTitleScene()
-//{
-//	ClearDrawScreen();
-//	DrawGraph(0, 0, g_Handles[TexturKind::TexturKindTitle], true);
-//	if (CheckHitKey(KEY_INPUT_RETURN))
-//	{
-//		g_currentSceneStep = SceneStepFinish;
-//	}
-//	ScreenFlip();
-//}
-
 void TitleScene::Draw()
 {
 	if (CurrentStep != Step::UpDate)

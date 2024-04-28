@@ -32,7 +32,7 @@ void GameScene::Init()
 
 void GameScene::UpDate()
 {
-	if (CheckHitKey(KEY_INPUT_A))
+	if (CheckHitKey(KEY_INPUT_N))
 	{
 		CurrentStep = Step::Finish;
 	}
