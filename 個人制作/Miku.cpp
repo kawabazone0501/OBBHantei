@@ -28,7 +28,7 @@ VECTOR MikuObject::GetMikuFrontVector()
 
 void MikuObject::InitializedMiku()
 {
-	model.pos = VGet(0.0f, 0.0f, 0.0f);
+	model.pos = VGet(10.0f, 10.0f, 0.0f);
 	model.scale = VGet(0.5f, 0.5f, 0.5f);
 	model.rotateAngle = VGet(0.0f, 0.0f, 0.0f);
 	model.modelKind = ModelKind::Miku;
@@ -36,6 +36,7 @@ void MikuObject::InitializedMiku()
 	model.animTime = 0.0f;
 	model.animType = AnimType::Wait;
 	model.frontVector = VGet(0.0f, 0.0f, -1.0f);
+
 
 	ChangeAnimation(GetModelHandle(model.modelKind), AnimType::Wait, model.animType, model.animTimer, model.animTime);
 }
@@ -108,15 +109,6 @@ void MikuObject::UpdateMiku()
 void MikuObject::DrawMiku()
 {
 	DrawAnimationModel(&model);
-	MV1DetachAnim(modelHandle, 0);
-	MV1AttachAnim(modelHandle, 0);
-	MV1SetAttachAnimTime(modelHandle, 0, animTimer);
-
-	VECTOR rad = angle.ToVECTOR();
-	rad = VScale(rad, DX_PI / 180.0f);
-
-	MV1SetMatrix(modelHandle, worldMat);
-	MV1DrawModel(modelHandle);
 
 #if defined (DEBUG)
 	collider.Draw();
@@ -145,10 +137,11 @@ void MikuObject::UpdateMatrix()
 		意図した情報を取得することができないので注意
 	*/
 	// アニメーションの反映
-	MV1DetachAnim(modelHandle, 0);
-	MV1AttachAnim(modelHandle, 0);
-	MV1SetAttachAnimTime(modelHandle, 0, animTimer);
-	MATRIX frame_matrix = MV1GetFrameLocalWorldMatrix(modelHandle, 18);
+	/*MV1DetachAnim(modelHandle, 0);
+	MV1AttachAnim(modelHandle, 0);*/
+	//MV1SetAttachAnimTime(modelHandle, 0, animTimer);
+	//MATRIX frame_matrix = MV1GetFrameLocalWorldMatrix(modelHandle, 18);
+	MATRIX frame_matrix = MV1GetFrameLocalWorldMatrix(GetModelHandle(model.modelKind), 1);
 
 	// 武器用の親行列を変更
 	collider.ChangeParentMatrix(frame_matrix);
