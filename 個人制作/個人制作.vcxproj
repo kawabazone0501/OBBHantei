@@ -148,6 +148,7 @@
     <ClCompile Include="Main.cpp" />
     <ClCompile Include="Miku.cpp" />
     <ClCompile Include="Model.cpp" />
+    <ClCompile Include="ObjectManager.cpp" />
     <ClCompile Include="SceneBase.cpp" />
     <ClCompile Include="SceneFactory.cpp" />
     <ClCompile Include="SceneManager.cpp" />
@@ -164,6 +165,8 @@
     <ClInclude Include="GameScene.h" />
     <ClInclude Include="Miku.h" />
     <ClInclude Include="Model.h" />
+    <ClInclude Include="ObjectBase.h" />
+    <ClInclude Include="ObjectManager.h" />
     <ClInclude Include="SceneBase.h" />
     <ClInclude Include="SceneFactory.h" />
     <ClInclude Include="SceneManager.h" />
